@@ -22,7 +22,7 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
   return (
     <form onSubmit={handleSubmit} className="space-y-6 w-full">
       <div>
-        <label className="block text-sm font-medium mb-2" htmlFor="fullName">
+        <label className="block font-serif text-sm font-medium mb-2" htmlFor="fullName">
           Full Name
         </label>
         <div className="relative">
@@ -35,7 +35,7 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
             required
             value={formData.fullName}
             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-            className="pl-10 w-full p-3 bg-white/80 backdrop-blur-sm border rounded-lg focus:ring-2 transition-all"
+            className="pl-10 w-full p-3 bg-white/90 backdrop-blur-sm border rounded-lg focus:ring-2 transition-all font-sans"
             style={{ 
               borderColor: theme.primary,
               '--tw-ring-color': theme.accent 
@@ -46,7 +46,7 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2" htmlFor="phoneNumber">
+        <label className="block font-serif text-sm font-medium mb-2" htmlFor="phoneNumber">
           Phone Number
         </label>
         <div className="relative">
@@ -59,7 +59,7 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
             required
             value={formData.phoneNumber}
             onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-            className="pl-10 w-full p-3 bg-white/80 backdrop-blur-sm border rounded-lg focus:ring-2 transition-all"
+            className="pl-10 w-full p-3 bg-white/90 backdrop-blur-sm border rounded-lg focus:ring-2 transition-all font-sans"
             style={{ 
               borderColor: theme.primary,
               '--tw-ring-color': theme.accent 
@@ -70,7 +70,7 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2" htmlFor="partySize">
+        <label className="block font-serif text-sm font-medium mb-2" htmlFor="partySize">
           Party Size
         </label>
         <div className="relative">
@@ -85,7 +85,7 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
             max="20"
             value={formData.partySize}
             onChange={(e) => setFormData({ ...formData, partySize: parseInt(e.target.value) })}
-            className="pl-10 w-full p-3 bg-white/80 backdrop-blur-sm border rounded-lg focus:ring-2 transition-all"
+            className="pl-10 w-full p-3 bg-white/90 backdrop-blur-sm border rounded-lg focus:ring-2 transition-all font-sans"
             style={{ 
               borderColor: theme.primary,
               '--tw-ring-color': theme.accent 
@@ -96,7 +96,7 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
 
       <button
         type="submit"
-        className="w-full py-3 px-4 rounded-lg text-white font-medium transition-all transform hover:scale-102 hover:shadow-lg"
+        className="w-full py-3 px-4 rounded-lg text-white font-serif text-lg transition-all transform hover:scale-102 hover:shadow-lg"
         style={{ 
           background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
         }}

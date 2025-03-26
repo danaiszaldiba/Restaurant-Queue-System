@@ -7,6 +7,7 @@ export interface Customer {
   status: 'waiting' | 'seated' | 'cancelled';
   estimatedWaitTime?: number;
   tableAssigned?: string;
+  tableCode?: string;
 }
 
 export interface Theme {
@@ -16,4 +17,16 @@ export interface Theme {
   background: string;
   text: string;
   logo?: string;
+}
+
+export interface MenuItem {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: 'starters' | 'mains' | 'desserts' | 'drinks';
+  image: string;
+  spicyLevel?: 1 | 2 | 3;
+  isVegetarian?: boolean;
+  isSpecial?: boolean;
 }

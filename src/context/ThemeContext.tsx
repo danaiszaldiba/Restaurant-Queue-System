@@ -2,12 +2,12 @@ import React, { createContext, useContext, useState } from 'react';
 import { Theme } from '../types';
 
 const defaultTheme: Theme = {
-  primary: '#FF6B35', // Warm tropical orange
-  secondary: '#004E89', // Deep ocean blue
-  accent: '#FFB563', // Soft mango
-  background: '#FFF9F2', // Warm sand
+  primary: '#C5A572', // Versailles gold
+  secondary: '#8B0000', // Deep red
+  accent: '#E8D5B5', // Light gold
+  background: '#FFFDF9', // Warm white
   text: '#2A2A2A',
-  logo: 'https://images.unsplash.com/photo-1583395838144-08821360914b?auto=format&fit=crop&q=80&w=200&h=200', // Tropical sunset image
+  logo: 'https://images.unsplash.com/photo-1577219492769-b63a779fac28?auto=format&fit=crop&q=80&w=200', // Elegant restaurant facade
 };
 
 const ThemeContext = createContext<{
