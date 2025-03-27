@@ -14,6 +14,23 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
     partySize: 1,
   });
 
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Remove any non-numeric characters
+    const numericValue = e.target.value.replace(/\D/g, '');
+    
+    // Format the phone number as user types (XXX-XXX-XXXX)
+    let formattedNumber = '';
+    if (numericValue.length <= 3) {
+      formattedNumber = numericValue;
+    } else if (numericValue.length <= 6) {
+      formattedNumber = `${numericValue.slice(0, 3)}-${numericValue.slice(3)}`;
+    } else {
+      formattedNumber = `${numericValue.slice(0, 3)}-${numericValue.slice(3, 6)}-${numericValue.slice(6, 10)}`;
+    }
+
+    setFormData({ ...formData, phoneNumber: formattedNumber });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const customerId = addToQueue(formData);
@@ -21,26 +38,45 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
     setFormData({ fullName: '', phoneNumber: '', partySize: 1 });
   };
 
+  const inputClasses = `
+    pl-10 w-full p-3 
+    bg-white/90 
+    rounded-lg 
+    border-2
+    focus:ring-2 
+    transition-all 
+    font-sans
+    backdrop-blur-sm
+    hover:border-opacity-75
+    focus:border-opacity-100
+    shadow-sm
+    hover:shadow-md
+    focus:shadow-md
+  `;
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6 w-full">
       <div>
         <label className="block font-serif text-sm font-medium mb-2" htmlFor="fullName">
           {t('fullName')}
         </label>
-        <div className="relative">
-          <Users className="absolute left-3 top-1/2 transform -translate-y-1/2" 
-                style={{ color: theme.secondary }} 
-                size={20} />
+        <div className="relative flex items-center">
+          <Users 
+            className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none z-10" 
+            style={{ color: theme.secondary }} 
+            size={20} 
+          />
           <input
             id="fullName"
             type="text"
             required
             value={formData.fullName}
             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-            className="pl-10 w-full p-3 bg-white/90 backdrop-blur-sm border rounded-lg focus:ring-2 transition-all font-sans"
+            className={inputClasses}
             style={{ 
               borderColor: theme.primary,
-              '--tw-ring-color': theme.accent 
+              '--tw-ring-color': theme.accent,
+              '--tw-ring-opacity': 0.5
             } as React.CSSProperties}
             placeholder={t('fullName')}
           />
@@ -51,22 +87,26 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
         <label className="block font-serif text-sm font-medium mb-2" htmlFor="phoneNumber">
           {t('phoneNumber')}
         </label>
-        <div className="relative">
-          <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2" 
-                style={{ color: theme.secondary }} 
-                size={20} />
+        <div className="relative flex items-center">
+          <Phone 
+            className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none z-10" 
+            style={{ color: theme.secondary }} 
+            size={20} 
+          />
           <input
             id="phoneNumber"
             type="tel"
             required
             value={formData.phoneNumber}
-            onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-            className="pl-10 w-full p-3 bg-white/90 backdrop-blur-sm border rounded-lg focus:ring-2 transition-all font-sans"
+            onChange={handlePhoneNumberChange}
+            maxLength={12}
+            className={inputClasses}
             style={{ 
               borderColor: theme.primary,
-              '--tw-ring-color': theme.accent 
+              '--tw-ring-color': theme.accent,
+              '--tw-ring-opacity': 0.5
             } as React.CSSProperties}
-            placeholder={t('phoneNumber')}
+            placeholder="XXX-XXX-XXXX"
           />
         </div>
       </div>
@@ -75,10 +115,12 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
         <label className="block font-serif text-sm font-medium mb-2" htmlFor="partySize">
           {t('partySize')}
         </label>
-        <div className="relative">
-          <UserPlus className="absolute left-3 top-1/2 transform -translate-y-1/2" 
-                   style={{ color: theme.secondary }} 
-                   size={20} />
+        <div className="relative flex items-center">
+          <UserPlus 
+            className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none z-10" 
+            style={{ color: theme.secondary }} 
+            size={20} 
+          />
           <input
             id="partySize"
             type="number"
@@ -87,10 +129,11 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
             max="20"
             value={formData.partySize}
             onChange={(e) => setFormData({ ...formData, partySize: parseInt(e.target.value) })}
-            className="pl-10 w-full p-3 bg-white/90 backdrop-blur-sm border rounded-lg focus:ring-2 transition-all font-sans"
+            className={inputClasses}
             style={{ 
               borderColor: theme.primary,
-              '--tw-ring-color': theme.accent 
+              '--tw-ring-color': theme.accent,
+              '--tw-ring-opacity': 0.5
             } as React.CSSProperties}
           />
         </div>
@@ -98,9 +141,9 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
 
       <button
         type="submit"
-        className="w-full py-3 px-4 rounded-lg text-white font-serif text-lg transition-all transform hover:scale-102 hover:shadow-lg"
+        className="w-full py-3 px-4 rounded-lg text-white font-serif text-lg transition-all transform hover:scale-105 hover:shadow-lg"
         style={{ 
-          background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
+          background: '#1B4332',
         }}
       >
         {t('joinQueueButton')}
