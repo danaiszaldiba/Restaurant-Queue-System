@@ -1,5 +1,6 @@
 import React from 'react';
 import AdminQueue from '../components/AdminQueue';
+import VersaillesLogo from '../components/VersaillesLogo';
 import { useTheme } from '../context/ThemeContext';
 import { Settings } from 'lucide-react';
 
@@ -13,28 +14,24 @@ const AdminView: React.FC = () => {
     >
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <div>
-            {theme.logo ? (
-              <img src={theme.logo} alt="Restaurant Logo" className="h-12" />
-            ) : (
-              <h1 
-                className="text-2xl font-bold"
-                style={{ color: theme.primary }}
-              >
-                Restaurant Admin
-              </h1>
-            )}
+          <div className="flex items-center gap-3">
+            <VersaillesLogo size={40} />
+            <h1 
+              className="text-2xl font-bold"
+              style={{ color: theme.primary }}
+            >
+              Restaurant Admin
+            </h1>
           </div>
           
           <button
             className="p-2 rounded-full hover:bg-gray-100"
             onClick={() => {
               // Here you would typically open a modal for theme customization
-              // For now, we'll just update with some sample values
               updateTheme({
-                primary: '#2563eb',
-                secondary: '#1e40af',
-                accent: '#3b82f6',
+                primary: '#1B4332',
+                secondary: '#C5A572',
+                accent: '#2D6A4F',
               });
             }}
           >
@@ -48,4 +45,4 @@ const AdminView: React.FC = () => {
   );
 };
 
-export default AdminView;
+export default AdminView

@@ -9,9 +9,9 @@ export default {
       },
       colors: {
         versailles: {
+          green: '#1B4332',
           gold: '#C5A572',
-          red: '#8B0000',
-          lightGold: '#E8D5B5',
+          lightGreen: '#2D6A4F',
           cream: '#FFFDF9',
         },
       },

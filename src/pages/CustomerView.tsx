@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import CustomerForm from '../components/CustomerForm';
 import QueueStatus from '../components/QueueStatus';
+import VersaillesLogo from '../components/VersaillesLogo';
 import { useTheme } from '../context/ThemeContext';
-import { Crown } from 'lucide-react';
 
 const CustomerView: React.FC = () => {
   const [customerId, setCustomerId] = useState<string | null>(null);
@@ -22,15 +22,15 @@ const CustomerView: React.FC = () => {
     >
       <div className="text-center mb-12">
         <div className="flex items-center justify-center mb-6">
-          <Crown size={48} style={{ color: theme.primary }} />
+          <VersaillesLogo size={64} />
         </div>
         <h1 
           className="font-serif text-5xl font-bold mb-4"
-          style={{ color: theme.secondary }}
+          style={{ color: theme.primary }}
         >
           Versailles Restaurant
         </h1>
-        <p className="font-serif text-xl italic" style={{ color: theme.primary }}>
+        <p className="font-serif text-xl italic" style={{ color: theme.secondary }}>
           La Casa del Mejor Café Cubano
         </p>
         {!customerId && (
@@ -59,4 +59,4 @@ const CustomerView: React.FC = () => {
   );
 };
 
-export default CustomerView;
+export default CustomerView
