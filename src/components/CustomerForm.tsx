@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Users, Phone, UserPlus } from 'lucide-react';
 import { useQueue } from '../context/QueueContext';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQueue }) => {
   const { addToQueue } = useQueue();
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
@@ -23,7 +25,7 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
     <form onSubmit={handleSubmit} className="space-y-6 w-full">
       <div>
         <label className="block font-serif text-sm font-medium mb-2" htmlFor="fullName">
-          Full Name
+          {t('fullName')}
         </label>
         <div className="relative">
           <Users className="absolute left-3 top-1/2 transform -translate-y-1/2" 
@@ -40,14 +42,14 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
               borderColor: theme.primary,
               '--tw-ring-color': theme.accent 
             } as React.CSSProperties}
-            placeholder="Enter your full name"
+            placeholder={t('fullName')}
           />
         </div>
       </div>
 
       <div>
         <label className="block font-serif text-sm font-medium mb-2" htmlFor="phoneNumber">
-          Phone Number
+          {t('phoneNumber')}
         </label>
         <div className="relative">
           <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2" 
@@ -64,14 +66,14 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
               borderColor: theme.primary,
               '--tw-ring-color': theme.accent 
             } as React.CSSProperties}
-            placeholder="Enter your phone number"
+            placeholder={t('phoneNumber')}
           />
         </div>
       </div>
 
       <div>
         <label className="block font-serif text-sm font-medium mb-2" htmlFor="partySize">
-          Party Size
+          {t('partySize')}
         </label>
         <div className="relative">
           <UserPlus className="absolute left-3 top-1/2 transform -translate-y-1/2" 
@@ -101,7 +103,7 @@ const CustomerForm: React.FC<{ onJoinQueue: (id: string) => void }> = ({ onJoinQ
           background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
         }}
       >
-        Join Queue
+        {t('joinQueueButton')}
       </button>
     </form>
   );

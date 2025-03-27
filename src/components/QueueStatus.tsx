@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Clock, Users, CheckCircle, Flame, Leaf } from 'lucide-react';
 import { useQueue } from '../context/QueueContext';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
 import { MenuItem } from '../types';
 import TableReadyNotification from './TableReadyNotification';
 
 const QueueStatus: React.FC<{ customerId?: string }> = ({ customerId }) => {
   const { queue, menu } = useQueue();
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<MenuItem['category']>('starters');
 
   const customer = customerId 
@@ -43,7 +45,7 @@ const QueueStatus: React.FC<{ customerId?: string }> = ({ customerId }) => {
           style={{ color: theme.primary }} 
         />
         <h2 className="text-2xl font-bold mb-2" style={{ color: theme.primary }}>
-          You're in Queue!
+          {t('youreInQueue')}
         </h2>
       </div>
       
@@ -52,7 +54,7 @@ const QueueStatus: React.FC<{ customerId?: string }> = ({ customerId }) => {
              style={{ borderColor: theme.accent }}>
           <div className="flex items-center">
             <Users className="mr-2" style={{ color: theme.secondary }} size={20} />
-            <span className="font-medium">Position in Queue:</span>
+            <span className="font-medium">{t('positionInQueue')}</span>
           </div>
           <span className="text-xl font-bold" style={{ color: theme.primary }}>
             #{position}
@@ -63,27 +65,27 @@ const QueueStatus: React.FC<{ customerId?: string }> = ({ customerId }) => {
              style={{ borderColor: theme.accent }}>
           <div className="flex items-center">
             <Clock className="mr-2" style={{ color: theme.secondary }} size={20} />
-            <span className="font-medium">Estimated Wait Time:</span>
+            <span className="font-medium">{t('estimatedWaitTime')}</span>
           </div>
           <span className="text-xl font-bold" style={{ color: theme.primary }}>
-            {customer.estimatedWaitTime} mins
+            {customer.estimatedWaitTime} {t('minutes')}
           </span>
         </div>
       </div>
 
       <div className="mt-6 p-4 bg-white/80 backdrop-blur-sm rounded-lg border"
            style={{ borderColor: theme.accent }}>
-        <h3 className="font-medium mb-3" style={{ color: theme.secondary }}>Party Details:</h3>
+        <h3 className="font-medium mb-3" style={{ color: theme.secondary }}>{t('partyDetails')}:</h3>
         <div className="space-y-2 text-gray-700">
-          <p><span className="font-medium">Name:</span> {customer.fullName}</p>
-          <p><span className="font-medium">Party Size:</span> {customer.partySize}</p>
-          <p><span className="font-medium">Phone:</span> {customer.phoneNumber}</p>
+          <p><span className="font-medium">{t('name')}</span> {customer.fullName}</p>
+          <p><span className="font-medium">{t('partySizeLabel')}</span> {customer.partySize}</p>
+          <p><span className="font-medium">{t('phone')}</span> {customer.phoneNumber}</p>
         </div>
       </div>
 
       <div className="mt-8">
         <h3 className="text-2xl font-bold mb-6" style={{ color: theme.primary }}>
-          Browse Our Menu
+          {t('browseMenu')}
         </h3>
         
         <div className="flex space-x-2 mb-6 overflow-x-auto pb-2">
@@ -161,4 +163,4 @@ const QueueStatus: React.FC<{ customerId?: string }> = ({ customerId }) => {
   );
 };
 
-export default QueueStatus;
+export default QueueStatus
